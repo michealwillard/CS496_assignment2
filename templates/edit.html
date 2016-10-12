@@ -1,0 +1,57 @@
+<!-- Assignment2
+Micheal Willard
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Adams Pirates Schedule - Edit</title>
+  </head>
+  <body>
+    <header class="business-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1 class="tagline">Adams Pirates Schedule - Edit</h1>
+          </div>
+        </div>
+      </div>
+    </header>
+    <form method="POST" action="{{ edit_url }}" enctype="multipart/form-data">
+      <input type="hidden" name="key" value="{{ game.key.urlsafe() }}">
+      <fieldset>
+        <legend>Edit Game</legend>
+        <legend>Opponent:</legend>
+        <input type="text" name="opponent-name" value="{{ game.opp }}">
+        <br>
+        <fieldset>
+          <label>Change Home/Away</label><br>
+          <input type="radio" name="h_a-action" value="home" {% if game.home_away == 'home' %} checked {% endif %}>Home<br>
+          <input type="radio" name="h_a-action" value="away" {% if game.home_away == 'away' %} checked {% endif %}>Away<br>
+        </fieldset>
+        <legend>Field Name:</legend>
+        <input type="text" name="field-name" value="{{ game.field }}">
+        <br>
+        <legend>Date</legend>
+        <input type="date" name="game-date" value="{{ game.date }}">
+        <br>
+        <legend>Time</legend>
+        <input type="time" name="game-time" value="{{ game.time }}">
+        <br>
+        {% if players|length > 0 %}
+        <fieldset>
+          <legend>Attending Players</legend>
+          {% for p in players %}
+          <label> {{ p.name }} </label><input type="checkbox" name="players[]" value="{{ p.key }}" {% if p.checked %}checked="{{ p.checked }}" {% endif %}>
+          {% endfor %}
+        </fieldset>
+        {% endif %}
+        <input type="submit" value="Save Changes">
+      </fieldset>
+    </form>
+
+    <a href="/admin">Return to Admin</a><br>
+    <a href="/">Return to Main</a>
+  </body>
+</html>

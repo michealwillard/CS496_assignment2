@@ -1,0 +1,97 @@
+<!-- LECTURE -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Adams Pirates - PSSBL">
+    <meta name="author" content="Micheal Willard">
+    <link rel="icon" href="../../favicon.ico">
+    <title>Adams Pirates - Schedule Viewer</title>
+    <!-- Bootstrap core CSS -->
+    <link type="text/css" href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="css/jumbotron.css">
+    <link type="text/css" href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <style>
+    table.table-bordered th,
+    table.table-bordered td {
+      border: 1px solid #ddd !important;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.php"><img src="images/logo.gif" width="75px" height="30px"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <div>
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/admin">Admin</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+            </ul>
+          </div>
+        </div><!--/.navbar-collapse-->
+      </div>
+    </nav>
+
+    <div class="container">
+      {% if games|length > 0 %}
+      <section>
+        <h2>Adams Pirates Schedule - View</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Home/Away</th>
+              <th>Opponent</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Field</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for g in games %}
+            <tr>
+              <td>{{ g.home_away }}</td>
+              <td>{{ g.opp }}</td>
+              <td>{{ g.date }}</td>
+              <td>{{ g.time }}</td>
+              <td>{{ g.field }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+      {% endif %}
+      <br><a href="/admin">Go to Admin</a><br>
+    </div>
+
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="col-xs-6">
+          <a href="http://www.michealwillard.com"><p class="text-muted">&copy; Micheal Willard 2016</p></a>
+        </div>
+        <div class="col-xs-6">
+          <p class="text-muted"><a href="https://pssbl.com/t/646/summer/2015/adams/pirates">PSSBL Adams Pirates</a></p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
